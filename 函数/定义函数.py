@@ -49,3 +49,23 @@ print(r)
 # Python的函数返回值是一个tuple
 
 
+
+
+# 定义一个函数quadratic(a,b,c)，接受3个参数
+# 返回一元二次方程：ax^2+bx+c=0的两个解
+# 计算平方根可以调用math.sqrt()函数
+import math
+def quadratic(a,b,c):
+    for i in (a,b,c):
+        if not isinstance(i,(int,float)):
+            raise TypeError('输入的参数类型错误')
+        elif a==0:
+            raise TypeError('a不能等于零')
+        else:
+            x1=-b+(math.sqrt(b*b-4*a*c))/2*a
+            x2=-b-(math.sqrt(b*b-4*a*c))/2*a
+
+A=int(input('please enter your a'))
+B=int(input('please enter your b'))
+C=int(input('please enter your c'))
+print(quadratic(A,B,C))
