@@ -119,6 +119,7 @@ def char2num(s):
 def str2int(s):
     return reduce(lambda x,y:x*10+y,map(char2num,s))
 
+print(str2int('13579'))
 # 也就是说，假设Python没有提供int()函数，
 # 你完全可以自己写一个把字符串转化为整数的函数，
 # 而且只需要几行代码！
@@ -168,7 +169,7 @@ def str2int(s):
 
 # 1.
 def normalize(name):
-    return str[:1].upper()+str[1:].lower()
+    return name[:1].upper()+name[1:].lower()
 # 测试:
 L1 = ['adam', 'LISA', 'barT']
 L2 = list(map(normalize, L1))
