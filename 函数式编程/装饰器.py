@@ -180,8 +180,15 @@ def log(text):
 
 import time, functools
 def metric(fn):
-    print('%s executed in %s ms' % (fn.__name__, 10.24))
-    return fn
+    @functools.wraps(fn)
+    def wrapper(*args,**kw):
+        start_time=time.time()
+        result=fn(*args,**kw)
+        end_time=time.time()
+        print('%s executed in %s ms' % (fn.__name__, (end_time-start_time)/1000))
+        return result
+    return wrapper
+
 # 测试
 @metric
 def fast(x, y):
@@ -200,3 +207,34 @@ if f != 33:
 elif s != 7986:
     print('测试失败!')
 
+
+
+import functools
+def log(text):
+    if type(text)==str:
+        def decorator(f):
+            @functools.wraps(f)
+            def wrapper(*args,**kw):
+                print('%s "%s"' % (f.__name__,text))
+                return f(*args,**kw)
+            return wrapper
+        return decorator
+    else:
+        f=text
+        @functools.wraps(f)
+        def wrapper(*args,**kw):
+            print('%s' % f.__name__)
+            return f(*args,**kw)
+        return wrapper
+
+@log
+def f():
+    print('测试')
+
+f()
+
+@log('execute')
+def f():
+    print('测试2')
+
+f()
