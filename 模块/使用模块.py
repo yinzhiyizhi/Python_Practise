@@ -3,7 +3,7 @@
 # 只要安装完毕，这些模块就可以立刻使用。
 
 # 我们以内建的sys模块为例，编写一个hello的模块：
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 ' a test module '
