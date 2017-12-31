@@ -3,8 +3,8 @@
 
 # 在绑定属性时，如果我们直接把属性暴露出去，
 # 虽然写起来很简单，但是，没办法检查参数，导致可以把成绩随便改：
-s=Student()
-s.score=9999
+# s=Student()
+# s.score=9999
 
 # 这显然不合逻辑。
 # 为了限制score的范围，可以通过一个set_score()方法来设置成绩，
@@ -113,7 +113,25 @@ class Student(object):
 
 
 class Screen(object):
-    pass
+    @property
+    def width(self):
+        return self._width
+
+    @width.setter
+    def width(self,value):
+        self._width=value
+
+    @property
+    def height(self):
+        return self._height
+
+    @height.setter
+    def height(self,value):
+        self._height=value
+
+    @property
+    def resolution(self):
+        return  self._width*self._height
 # 测试:
 s = Screen()
 s.width = 1024
