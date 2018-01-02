@@ -121,15 +121,15 @@ class Fib(object):
 f=Fib()
 f[0]
 # 1
-# f[1]
+f[1]
 # 1
-# f[2]
+f[2]
 # 2
-# f[3]
+f[3]
 # 3
-# f[10]
+f[10]
 # 89
-# f[100]
+f[100]
 # 573147844013817084101
 
 # 但是list有个神奇的切片方法：
@@ -141,12 +141,12 @@ list(range(100))[5:10]
 # 也可能是一个切片对象slice，所以要做判断：
 class Fib(object):
     def __getitem__(self, n):
-        if isinstance(n,int):
+        if isinstance(n,int): # n是索引
             a,b=1,1
             for x in range(n):
                 a,b=b,a+b
             return a
-        if isinstance(n,slice):
+        if isinstance(n,slice): # n是切片
             start=n.start
             stop=n.stop
             if start is None:
@@ -268,8 +268,8 @@ class Chain(object):
     __repr__=__str__
 
 # 试试：
-Chain().status.user.timeline.list
-# '/status/user/timeline/list'
+print(Chain().status.user.timeline.list)
+# /status/user/timeline/list
 
 # 这样，无论API怎么变，SDK都可以根据URL实现完全动态的调用，
 # 而且，不随API的增加而改变！
@@ -335,3 +335,27 @@ callable('str')
 # 请参考Python的官方文档(http://docs.python.org/3/reference/datamodel.html#special-method-names)。
 
 
+
+
+
+
+# 还有些REST API会把参数放到URL中，比如GitHub的API：
+#
+# GET /users/:user/repos
+# 调用时，需要把:user替换为实际用户名。如果我们能写出这样的链式调用：
+#
+# Chain().users('michael').repos
+# 就可以非常方便地调用API了。有兴趣的童鞋可以试试写出来。
+
+class Chain(object):
+    def __init__(self,path=''):
+        self._path=path
+    def __getattr__(self, path):
+        return Chain('%s/%s' % (self._path,path))
+    def __str__(self):
+        return self._path
+    def __call__(self,name):
+        return Chain('%s/%s' % (self._path,name))
+    __repr__=__str__
+
+print(Chain().users('michael').repos)
