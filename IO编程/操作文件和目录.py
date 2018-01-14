@@ -23,10 +23,18 @@ os.name # 操作系统类型
 
 # 注意uname()函数在Windows上不提供，也就是说，os模块的某些函数是跟操作系统相关的。
 
+
 # 环境变量
 # 在操作系统中定义的环境变量，全部保存在os.environ这个变量中，可以直接查看：
+# >>> os.environ
+# environ({'VERSIONER_PYTHON_PREFER_32_BIT': 'no', 'TERM_PROGRAM_VERSION': '326', 'LOGNAME': 'michael', 'USER': 'michael', 'PATH': '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/mysql/bin', ...})
 
+# 要获取某个环境变量的值，可以调用os.environ.get('key')：
 
+# >>> os.environ.get('PATH')
+# '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/mysql/bin'
+# >>> os.environ.get('x', 'default')
+# 'default'
 
 
 
