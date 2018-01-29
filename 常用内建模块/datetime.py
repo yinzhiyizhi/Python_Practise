@@ -216,7 +216,11 @@ print(tokyo_dt2)
 import re
 from datetime import datetime, timezone, timedelta
 def to_timestamp(dt_str, tz_str):
-
+    x = re.match(r'UTC([\+|\-\d]+?):00', tz_str)
+    tz = int(x.group(1))
+    tz_utc = timezone(timedelta(hours=tz))
+    cday = datetime.strptime(dt_str, '%Y-%m-%d %H:%M:%S').replace(tzinfo=tz_utc)
+    return cday.timestamp()
 
 
 # 测试:
