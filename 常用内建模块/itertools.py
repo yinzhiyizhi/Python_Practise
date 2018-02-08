@@ -50,7 +50,12 @@ for n in ns:
 # 无限序列虽然可以无限迭代下去，
 # 但是通常我们会通过takewhile()等函数根据条件判断来截取出一个有限的序列：
 
+natuals=itertools.count(1)
+ns=itertools.takewhile(lambda x:x<=10,natuals)
+list(ns)
+# [1,2,3,4,5,6,7,8,9,10]
 
+# itertools提供的几个迭代器操作函数更加有用：
 
 
 
