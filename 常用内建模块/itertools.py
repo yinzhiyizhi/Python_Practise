@@ -6,7 +6,7 @@
 # 首先，我们看看itertools提供的几个“无限”迭代器：
 
 import itertools
-natuals=itertools.count(1)
+natuals=itertools.count(1)  # count(start=1, step=1)
 # for n in natuals:
     # print(n)
 # '''
@@ -142,6 +142,7 @@ def pi(N):
 
     # step 4: 求和:
     return sum(result)
+    
 # 测试:
 print(pi(10))
 print(pi(100))
