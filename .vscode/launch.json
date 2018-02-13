@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "stopOnEntry": true,
-            "pythonPath": "${config:python.pythonPath}",
+            "pythonPath": "F:/Python/Anaconda/Anaconda/python.exe",
             "program": "${file}",
             "cwd": "${workspaceRoot}",
             "env": {},
