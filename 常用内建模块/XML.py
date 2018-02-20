@@ -18,6 +18,7 @@
 # 举个例子，当SAX解析器读到一个节点时：
 
 # <a href="/">python</a>
+
 # 会产生3个事件：
 
 # start_element事件，在读取<a href="/">时；
@@ -28,7 +29,53 @@
 
 # 用代码实验一下：
 
+from xml.parsers.expat import ParserCreate
 
+class DefaultSaxHandler(object):
+    def start_element(self,name,attrs):
+        print('sax:start_element: %s, attrs: %s' % (name,str(attrs)))
+    
+    def end_element(self,name):
+        print('sax:end_elemetn: %s' % name)
+    
+    def char_data(self,text):
+        print('sax:char_data: %s' % text)
+
+xml=r'''<?xml version="1.0"?>
+<ol>
+    <li><a href="/python">Python</a></li>
+    <li><a href="/ruby">Ruby</a></li>
+</ol>
+'''
+
+handler=DefaultSaxHandler()
+parser=ParserCreate()
+parser.StartElementHandler=handler.start_element
+parser.EndElementHandler=handler.end_element
+parser.CharacterDataHandler=handler.char_data
+parser.Parse(xml)
+
+# 需要注意的是读取一大段字符串时，CharacterDataHandler可能被多次调用，
+# 所以需要自己保存起来，在EndElementHandler里面再合并。
+
+# 除了解析XML外，如何生成XML呢？
+# 99%的情况下需要生成的XML结构都是非常简单的，
+# 因此，最简单也是最有效的生成XML的方法是拼接字符串：
+
+L=[]
+L.append(r'<?xml version="1.0"?>')
+L.append(r'<root>')
+L.append(encode('some & data'))
+L.append(r'</root>')
+return ''.join(L)
+
+# 如果要生成复杂的XML呢？建议你不要用XML，改成JSON。
+
+
+
+# 小结
+# 解析XML时，注意找出自己感兴趣的节点，响应事件时，把节点数据保存起来。
+# 解析完毕后，就可以处理数据。
 
 
 
