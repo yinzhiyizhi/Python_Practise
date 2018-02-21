@@ -62,12 +62,12 @@ parser.Parse(xml)
 # 99%的情况下需要生成的XML结构都是非常简单的，
 # 因此，最简单也是最有效的生成XML的方法是拼接字符串：
 
-L=[]
-L.append(r'<?xml version="1.0"?>')
-L.append(r'<root>')
-L.append(encode('some & data'))
-L.append(r'</root>')
-return ''.join(L)
+# L=[]
+# L.append(r'<?xml version="1.0"?>')
+# L.append(r'<root>')
+# L.append(encode('some & data'))
+# L.append(r'</root>')
+# return ''.join(L)
 
 # 如果要生成复杂的XML呢？建议你不要用XML，改成JSON。
 
@@ -79,10 +79,34 @@ return ''.join(L)
 
 
 
+# 练习
+# 请利用SAX编写程序解析Yahoo的XML格式的天气预报，获取天气预报：
+
+# https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20%3D%202151330&format=xml
+
+# 参数woeid是城市代码，要查询某个城市代码，
+# 可以在weather.yahoo.com搜索城市，浏览器地址栏的URL就包含城市代码。
+
+from xml.parsers.expat import ParserCreate
+from urllib import request
+
+def parseXml(xml_str):
+    def start_element(self,name,attrs):
+        print('sax:start_element: %s, attrs: %s' % (name,str(attrs)))
+    def end_element(self,name):
+        print('sax:end_ element: %s,attrs: %s' % name)
+    def char_data(sele,text):
+        print('sax:char_data: %s' % text)
 
 
+# 测试:
+URL = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20%3D%202151330&format=xml'
 
+with request.urlopen(URL, timeout=4) as f:
+    data = f.read()
 
+result = parseXml(data.decode('utf-8'))
+assert result['city'] == 'Beijing'
 
 
 
