@@ -58,10 +58,12 @@ parser.feed('''<html>
 # 输出Python官网发布的会议时间、名称和地点。
 
 from urllib import request
-from pyquery import PyQuery as pq
+from html.parser import HTMLParser
 import re 
-import time
 
-
+class MyHTMLParser(HTMLParser):
+    flag=0
+    res=[]
+    is_get_data=0
 
 
