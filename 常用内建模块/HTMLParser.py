@@ -66,4 +66,9 @@ class MyHTMLParser(HTMLParser):
     res=[]
     is_get_data=0
 
-
+    def handle_starttag(self, tag, attrs):
+        # 首先找到包裹事件的元素
+        if tag == 'ul':
+            for attr in attrs:
+                if re.match(r'list-recent-events', attr[1]):
+                    self.flag = 1
