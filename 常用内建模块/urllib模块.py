@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # urllib提供了一系列用于操作URL的功能。
+# 这里的urllib是python的一个内置库，request是urllib里面的一个模块
+# 而requests是一个第三方库
 
 
 
