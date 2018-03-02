@@ -48,3 +48,11 @@ im2=im.filter(ImageFilter.BLUR)
 im2.save('blur.jpg','jpeg')
 
 
+
+# PIL的ImageDraw提供了一系列绘图方法，让我们可以直接绘图。
+# 比如要生成字母验证码图片：
+
+from PIL import Image,ImageDraw,ImageFont,ImageFilter
+
+import random
+
