@@ -87,3 +87,23 @@ for t in range(4):
 image=image.filter(ImageFilter.BLUR)
 image.save('code.jpg','jpeg')
 
+# 我们用随机颜色填充背景，再画上文字，最后对图像进行模糊，得到验证码图片如下：
+
+# https://cdn.liaoxuefeng.com/cdn/files/attachments/0014076720724832de067ce843d41c58f2af067d1e0720f000
+
+# 如果运行的时候报错：
+
+# IOError: cannot open resource
+
+# 这是因为PIL无法定位到字体文件的位置，可以根据操作系统提供绝对路径，比如：
+
+# '/Library/Fonts/Arial.ttf'
+
+# 要详细了解PIL的强大功能，请请参考Pillow官方文档：
+
+# https://pillow.readthedocs.org/
+
+
+
+# 小结
+# PIL提供了操作图像的强大功能，可以通过简单的代码完成复杂的图像处理。
