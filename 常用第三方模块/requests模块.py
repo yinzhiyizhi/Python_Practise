@@ -28,3 +28,10 @@ r.status_code
 r.text
 # r.text
 # '<!DOCTYPE HTML>\n<html>\n<head>\n<meta name="description" content="提供图书、电影、音乐唱片的推荐、评论和...'
+
+# 对于带参数的URL，传入一个dict作为params参数：
+
+r=requests.get('https://www.douban.com/search',params={'q':'python','cat':'1001'})
+
+# r.url # 实际请求的URL
+# 'https://www.douban.com/search?q=python&cat=1001'
