@@ -56,3 +56,37 @@ for x in range(10):
 # [33.3, 21.9, 28.1, 30.8]
 
 
+
+# 获取内存信息
+# 使用psutil获取物理内存和交换内存信息，分别使用：
+
+psutil.virtual_memory()
+# svmem(total=8589934592, available=2866520064, percent=66.6, used=7201386496, free=216178688, active=3342192640, inactive=2650341376, wired=1208852480)
+psutil.swap_memort()
+# sswap(total=1073741824, used=150732800, free=923009024, percent=14.0, sin=10705981440, sout=40353792)
+
+# 返回的是字节为单位的整数，
+# 可以看到，总内存大小是8589934592 = 8 GB，
+# 已用7201386496 = 6.7 GB，使用了66.6%。
+
+# 而交换区大小是1073741824 = 1 GB。
+
+
+
+# 获取磁盘信息
+# 可以通过psutil获取磁盘分区、磁盘使用率和磁盘IO信息：
+psutil.disk_partitions() # 磁盘分区信息
+# [sdiskpart(device='/dev/disk1', mountpoint='/', fstype='hfs', opts='rw,local,rootfs,dovolfs,journaled,multilabel')]
+
+psutil.disk_usage('/') # 磁盘使用情况
+# sdiskusage(total=998982549504, used=390880133120, free=607840272384, percent=39.1)
+
+psutil.disk_io_counters() # 磁盘IO
+# sdiskio(read_count=988513, write_count=274457, read_bytes=14856830464, write_bytes=17509420032, read_time=2228966, write_time=1618405)
+
+# 可以看到，磁盘'/'的总容量是998982549504 = 930 GB，使用了39.1%。
+# 文件格式是HFS，opts中包含rw表示可读写，journaled表示支持日志。
+
+
+
+
