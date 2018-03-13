@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*
+# -*- coding: utf-8 -*-
 
 # 除了内建的模块外，Python还有大量的第三方模块。
 

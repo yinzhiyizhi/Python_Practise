@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*
+# -*- coding: utf-8 -*-
 
 # 我们已经讲解了Python内置的urllib模块，用于访问网络资源。
 # 但是，它用起来比较麻烦，而且，缺少很多实用的高级功能。
