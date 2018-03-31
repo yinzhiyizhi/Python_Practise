@@ -11,3 +11,9 @@
 
 from email.mime.text import MIMEText
 msg=MIMEText('hello, send by Python...','plain','utf-8')
+
+# 注意到构造MIMEText对象时，
+# 第一个参数就是邮件正文，第二个参数是MIME的subtype，
+# 传入'plain'表示纯文本，最终的MIME就是'text/plain'，
+# 最后一定要用utf-8编码保证多语言兼容性。
+
