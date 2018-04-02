@@ -39,3 +39,14 @@ server.quit()
 # login()方法用来登录SMTP服务器，sendmail()方法就是发邮件，
 # 由于可以一次发给多个人，所以传入一个list，
 # 邮件正文是一个str，as_string()把MIMEText对象变成str。
+
+# 如果一切顺利，就可以在收件人信箱中收到我们刚发送的Email：
+
+# https://cdn.liaoxuefeng.com/cdn/files/attachments/0014079993639301a4130bf23574d3586f91928c4f6d6e3000
+
+# 仔细观察，发现如下问题：
+
+# 邮件没有主题；
+# 收件人的名字没有显示为友好的名字，
+# 比如Mr Green <green@example.com>；
+# 明明收到了邮件，却提示不在收件人中。
