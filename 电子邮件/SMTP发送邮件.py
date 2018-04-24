@@ -55,3 +55,11 @@ server.quit()
 # 而是包含在发给MTA的文本中的，
 # 所以，我们必须把From、To和Subject添加到MIMEText中，
 # 才是一封完整的邮件：
+
+from email import encoders
+from email.header import Header
+from email.mime.text import MIMEText
+from email.utils import parseaddr, formataddr
+
+import smtplib
+
