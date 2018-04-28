@@ -29,5 +29,13 @@
 # 由于SQLite的驱动内置在Python标准库中，
 # 所以我们可以直接来操作SQLite数据库。
 
+# 我们在Python交互式命令行实践一下：
+
+# 导入SQLite驱动:
+import sqlite3
+# 连接到SQLite数据库
+# 数据库文件是test.db
+# 如果文件不存在，会自动在当前目录创建:
+conn = sqlite3.connect('test.db')
 
 
